@@ -23,4 +23,9 @@ class TaskController < ApplicationController
     redirect "/tasks/#{@task.id}"
   end
 
+  get '/tasks/:id/edit' do 
+    @task = Task.find_by(id:params[:id])
+    erb :'tasks/edit'
+  end
+  
 end
