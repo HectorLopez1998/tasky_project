@@ -17,6 +17,10 @@ class TaskController < ApplicationController
     erb :'tasks/show'
   end
 
+  post '/tasks' do 
+        
+    @task = Task.create(params)
+    redirect "/tasks/#{@task.id}"
+  end
 
-  
 end
