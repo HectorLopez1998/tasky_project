@@ -1,0 +1,10 @@
+<%= @task.title%><br>
+<%= @task.description%><br>
+<%= @task.company%><br>
+<a href='/tasks'>Go Home</a>
+<a href="/tasks/<%= @task.id %>/edit">Update</a>
+
+<form action="/tasks/<%= @task.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete task">
+</form>
