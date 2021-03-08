@@ -27,5 +27,11 @@ class TaskController < ApplicationController
     @task = Task.find_by(id:params[:id])
     erb :'tasks/edit'
   end
+
+  patch '/tasks/:id' do 
+    @task = Task.find_by(id:params[:id])
+    @task.update(title: params[:title], description: params[:description])
+    redirect "/tasks/#{@task.id}"
+  end
   
 end
