@@ -33,5 +33,11 @@ class TaskController < ApplicationController
     @task.update(title: params[:title], description: params[:description])
     redirect "/tasks/#{@task.id}"
   end
-  
+
+  delete '/tasks/:id' do 
+    @task = Task.find_by(id:params[:id])
+    @task.destroy
+    redirect 'tasks'
+  end
+
 end
