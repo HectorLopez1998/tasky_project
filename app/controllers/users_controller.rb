@@ -12,7 +12,7 @@ class UsersController < ApplicationController
             redirect '/signup'
         else 
             user.save
-            
+            session[:user_id] = user.id
             redirect '/tasks'
         end 
 
@@ -24,5 +24,12 @@ class UsersController < ApplicationController
     end
 
     post '/login' do 
+        user = User.find_by_username(params[:username])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect '/tasks'
+        else
+            flash[:error] = "Invalid Login"
+        end
     end
 end
