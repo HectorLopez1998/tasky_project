@@ -41,3 +41,8 @@ class TaskController < ApplicationController
   end
 
 end
+
+private
+    def find_task
+        @task = Task.find_by(id:params[:id])
+    end
