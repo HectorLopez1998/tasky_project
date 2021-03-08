@@ -1,0 +1,11 @@
+<h1> MY INDEX PAGE </h1>
+<h3>These are all the current tasks</h3>
+
+<% @tasks.each do |t|%>
+<br>
+Title: <%= t.title%> - <%=t.id%><br>
+Company: <%=t.company%><br>
+Description: <%=t.description%><br>
+Created at: <u><%=t.created_at%></u><br>
+Last updated: <u><%=t.updated_at%></u><br>
+<%end%>
