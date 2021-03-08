@@ -23,13 +23,16 @@ class TasksController < ApplicationController
 
       post '/tasks' do 
         
-        @task = Task.create(params)
+        @task = Task.new(params)
+        @task.user_id = session[:user_id]
+        @task.save
         redirect "/tasks/#{@task.id}"
       end
 
       get '/tasks/:id/edit' do 
         @task = Task.find_by(id:params[:id])
-        erb :'tasks/edit'
+        # not_authorized 
+         erb :"/tasks/edit"
       end
 
       patch '/tasks/:id' do 
@@ -41,7 +44,7 @@ class TasksController < ApplicationController
       delete '/tasks/:id' do 
         @task = Task.find_by(id:params[:id])
         @task.destroy
-        redirect 'tasks'
+        redirect '/tasks'
       end
     
     
@@ -51,6 +54,11 @@ class TasksController < ApplicationController
         @task = Task.find_by(id:params[:id])
     end
 
-    
+    def not_authorized
+        if @task.user != current_user
+            flash[:error] = "You are not allowed to edit this task"
+            redirect '/tasks'
+        end
+    end
 
 end

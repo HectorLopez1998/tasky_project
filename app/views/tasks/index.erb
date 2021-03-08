@@ -3,7 +3,10 @@
 
 <% @tasks.each do |t|%>
 <br>
-Title: <%= t.title%> - <%=t.id%><br>
+Title: <%= t.title%> - <%=t.id%>
+    <% if current_user != t.user_id %>
+        <a href="/tasks/<%= t.id %>/edit">Edit</a><br>
+        <% end %>
 Company: <%=t.company%><br>
 Description: <%=t.description%><br>
 Created at: <u><%=t.created_at%></u><br>
