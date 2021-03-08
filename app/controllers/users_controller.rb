@@ -30,6 +30,12 @@ class UsersController < ApplicationController
             redirect '/tasks'
         else
             flash[:error] = "Invalid Login"
+            redirect '/login'
         end
+    end
+
+    get '/logout' do 
+        session.clear
+        redirect '/login'
     end
 end
