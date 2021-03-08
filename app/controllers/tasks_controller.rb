@@ -10,5 +10,13 @@ class TaskController < ApplicationController
         @task = Task.new
         erb :'tasks/new'
    end
-   
+
+   get '/tasks/:id' do 
+    # @task = Task.find(params[:id])
+    find_task
+    erb :'tasks/show'
+  end
+
+
+  
 end
